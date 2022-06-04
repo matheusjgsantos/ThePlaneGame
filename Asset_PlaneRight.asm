@@ -74,6 +74,44 @@ LoadPlaneRightSprite:
         ld   bc,4
         ld   hl,PLANE_RIGHT_01D_ATTRIB
         call LDIRVM
+        
+        ld a,(PlaneRightVertical)
+        ld a,20
+        ld (PlaneRightVertical),a
+        
+        ld a,(PlaneRightHorizontal)
+        ld a,10
+        ld (PlaneRightHorizontal),a
+        
+        call MovePLaneRight
+        
+        ret
+
+MovePlaneRight:
+	push hl
+        push af
+        
+        ld b,4
+        ld c,4
+        
+MovePLaneRightLoop:
+        ld a,c
+        call CALATR
+        ld a,(PlaneRightVertical)
+        call WRTVRM
+        
+        inc hl
+        
+        ld a,(PlaneRightHorizontal)
+        call WRTVRM
+        
+        inc c
+	djnz MovePLaneRightLoop
+        
+        pop af
+        pop hl
+        
+        ret
 
 PLANE_RIGHT_01A; 
 ; --- AviaoDireita
@@ -84,7 +122,7 @@ PLANE_RIGHT_01A;
         DB $E2,$04,$38,$40,$80,$00,$00,$00
       
 PLANE_RIGHT_01A_ATTRIB:
-	DB 40,40,4*4,1
+	DB 0,0,4*4,1
 
 PLANE_RIGHT_01B:
 ; color 12
@@ -94,7 +132,7 @@ PLANE_RIGHT_01B:
         DB $1C,$F8,$C0,$80,$00,$00,$00,$00
 
 PLANE_RIGHT_01B_ATTRIB:
-	DB 40,40,4*5,12
+	DB 0,0,4*5,12
 
 PLANE_RIGHT_01C
 ; color 13
@@ -104,7 +142,7 @@ PLANE_RIGHT_01C
         DB $00,$00,$00,$00,$00,$00,$00,$00
         
 PLANE_RIGHT_01C_ATTRIB:
-	DB 40,40,4*6,13
+	DB 0,0,4*6,13
 
 PLANE_RIGHT_01D
 ; color 14
@@ -114,7 +152,7 @@ PLANE_RIGHT_01D
         DB $00,$00,$00,$00,$00,$00,$00,$00
         
 PLANE_RIGHT_01D_ATTRIB:
-	DB 40,40,4*7,14
+	DB 0,0,4*7,14
 
 PLANE_RIGHT_01E
 ; color 15

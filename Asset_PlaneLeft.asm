@@ -64,6 +64,8 @@ LoadPlaneLeftSprite:
         ld   hl,PLANE_LEFT_01D_ATTRIB
         call LDIRVM
         
+        ret
+        
 PLANE_LEFT_01A:
 ; 
 ; --- Slot 1

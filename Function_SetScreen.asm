@@ -7,6 +7,7 @@ InitGraphicMode:
         ld hl,BDRCLR
         ld (hl),d
         call INIGRP
+        
         ret
         
 SetSpriteSize16x16:
@@ -22,6 +23,7 @@ SetSpriteSize16x16:
         ld c, $01	; Coloca em C o valor do registrador alvo
         call WRTVDP	; Envia para o registrador C os dados em B
         ei		; Habilita novamente as interrupções
+        
         ret
 
 ResetNameTable:
@@ -29,4 +31,5 @@ ResetNameTable:
         ld a,$0
         ld bc,$37F
         call FILVRM
+        
         ret
