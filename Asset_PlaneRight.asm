@@ -1,9 +1,9 @@
 LoadPlaneRightSprite:
 	ld   a,4
 	call CALPAT
-	
         push hl
         pop  de
+        
         ld   hl,PLANE_RIGHT_01A
         ld   bc,32
         call LDIRVM

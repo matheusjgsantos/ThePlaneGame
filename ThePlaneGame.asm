@@ -35,6 +35,7 @@ Init:
 	; Load the plane sprites
         call LoadPlaneLeftSprite
         call LoadPlaneRightSprite
+        call mostra_nuvens
         
         ; Zeroes the JIFFY value
         ld a,0
@@ -51,6 +52,7 @@ MainLoop:
         
 ExecWithinJiffy:
 	call CheckStick
+        call movimenta_nuvem
         
 NewJiffy:
 	ld a,(JIFFY)
@@ -63,12 +65,11 @@ NewJiffy:
         include "Function_SetSound.asm"
 	include "Asset_PlaneRight.asm"
 	include "Function_CursorAndJoystick.asm"
-        
 	include "Asset_ScreenBorder.asm"
-
 	include "Function_DrawBorder.asm"
+	include "Asset_Clouds.asm"
 
-        
+
 ;This include should be the last entry in the main file
         include "System_GameVariables.asm"
 	END Init
