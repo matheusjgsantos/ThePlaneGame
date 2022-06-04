@@ -36,9 +36,26 @@ Init:
         call LoadPlaneLeftSprite
         call LoadPlaneRightSprite
         
+        ; Zeroes the JIFFY value
+        ld a,0
+        ld (JIFFY),a
+        ld (PreviousJiffy),a
+        
 MainLoop:
-	call CheckStick
+	ld a,(JIFFY)
+        ld hl,PreviousJiffy
+        cp (hl)
+        jr nz,ExecWithinJiffy
+        
         jr MainLoop
+        
+ExecWithinJiffy:
+	call CheckStick
+        
+NewJiffy:
+	ld a,(JIFFY)
+	ld (PreviousJiffy),a
+        jp mainLoop
         
 ; Includes for functions and assets
 	include "Function_SetScreen.asm"

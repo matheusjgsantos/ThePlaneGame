@@ -9,6 +9,8 @@ Posicao:
 	DW $0
 Preenche:
 	DW $0
+PreviousJiffy:
+	DW $0
         
 Done:
 	DB 1,0

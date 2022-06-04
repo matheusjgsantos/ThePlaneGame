@@ -11,4 +11,8 @@ GRPPAT: equ 0F3CFH; Sprite Pattern Base - default value: 3800H
 ATRBAS:	equ 0F928H; Sprite size (8x8 or 16x16) - default value 1B00H
 GRPACX: equ 0FCB7H; Show or set the current row-position of the cursor
 GRPACY: equ 0FCB9H; Show or set the Current column-position of the cursor
-RG1SAV: equ 0F3E0H
+RG1SAV: equ 0F3E0H; Actual value of the VDP register #1
+CSRY:	equ 0xF3DC; Current row-position of the cursor
+CSRX:	equ 0xF3DD; Current column-position of the cursor
+JIFFY:	equ 0xFC9E; THe JIFFY value increases at each completed frame drawn in the screen
+
