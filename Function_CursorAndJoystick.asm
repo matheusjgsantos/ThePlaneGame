@@ -8,10 +8,10 @@ CheckStick:
 
 UpStick:
 	cp 1
-        jr nz,RightStick
+        jr nz,UpRightStick
         
         ld a,(PlaneRightVertical)
-        cp 0
+        cp 10
         jp z,ExitLoop
         
         sub a,1
@@ -19,12 +19,36 @@ UpStick:
         
         call MovePlaneRight
         
+        jp ExitLoop
+        
+UpRightStick:
+	cp 2
+        jr nz,RightStick
+        
+        ld a,(PlaneRightVertical)
+        cp 10
+        jp z,CheckUpRightLimit
+        
+        sub a,1
+        ld (PlaneRightVertical),a
+
+  CheckUpRightLimit:        
+          ld a,(PlaneRightHorizontal)
+          cp 230
+          jp z,ExitLoop
+        
+        add a,1
+        ld (PlaneRightHorizontal),a
+        
+        call MovePlaneRight
+        jp ExitLoop
+        
 RightStick:
         cp 3
-        jr nz,DownStick
+        jr nz,DownRightStick
 
         ld a,(PlaneRightHorizontal)
-        cp 240
+        cp 230
         jp z,ExitLoop
         
         add a,1
@@ -33,12 +57,35 @@ RightStick:
         
         jp ExitLoop
         
-DownStick:
-	cp 5
-        jp nz,LeftStick
+DownRightStick:
+	cp 4
+        jr nz,DownStick
         
         ld a,(PlaneRightVertical)
-        cp 180
+        cp 115
+        jp z,CheckDownRightLimit
+        
+        add a,1
+        ld (PlaneRightVertical),a
+        
+  CheckDownRightLimit:       
+          ld a,(PlaneRightHorizontal)
+          cp 230
+          jp z,ExitLoop
+        
+        add a,1
+        ld (PlaneRightHorizontal),a
+        
+        call MovePlaneRight
+        
+        jp ExitLoop
+        
+DownStick:
+	cp 5
+        jp nz,DownLeftStick
+        
+        ld a,(PlaneRightVertical)
+        cp 115
         jp z,ExitLoop
         
         add a,1
@@ -47,17 +94,63 @@ DownStick:
         
         jp ExitLoop      
 
+DownLeftStick:
+	cp 6
+        jr nz,LeftStick
+        
+        ld a,(PlaneRightVertical)
+        cp 115
+        jp z,CheckDownLeftLimit
+        
+        add a,1
+        ld (PlaneRightVertical),a
+        
+  CheckDownLeftLimit:       
+          ld a,(PlaneRightHorizontal)
+          cp 10
+          jp z,ExitLoop
+        
+        sub a,1
+        ld (PlaneRightHorizontal),a
+        
+        call MovePlaneRight
+        
+        jp ExitLoop
+
 LeftStick:
         cp 7	
-        jr nz,ExitLoop	
+        jr nz,UpLeftStick
         
         ld a,(PlaneRightHorizontal)
-        cp 1
+        cp 10
         jr z,ExitLoop
         
         sub a,1
         ld (PlaneRightHorizontal),a
 
+        call MovePlaneRight
+        
+        jp ExitLoop
+
+UpLeftStick:
+	cp 8
+        jr nz,ExitLoop
+        
+        ld a,(PlaneRightVertical)
+        cp 10
+        jp z,CheckUpLeftLimit
+        
+        sub a,1
+        ld (PlaneRightVertical),a
+        
+  CheckUpLeftLimit:       
+          ld a,(PlaneRightHorizontal)
+          cp 10
+          jp z,ExitLoop
+        
+        sub a,1
+        ld (PlaneRightHorizontal),a
+        
         call MovePlaneRight
         
         jp ExitLoop

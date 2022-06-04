@@ -5,6 +5,10 @@ PlaneRightVertical:
 	DB $0
 PlaneRightHorizontal:
 	DB $0
+Posicao:
+	DW $0
+Preenche:
+	DW $0
         
 Done:
 	DB 1,0

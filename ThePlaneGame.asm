@@ -27,6 +27,8 @@ Init:
         ; We need to set all screen tiles to tile 0 before loading any graphic
         call ResetNameTable
         
+        ;
+        call desenha_borda
         ; The first sprite we will load will be the LeftPlane, so we will set
         ; 0 to A and call the sprite function
         
@@ -44,6 +46,11 @@ MainLoop:
         include "Function_SetSound.asm"
 	include "Asset_PlaneRight.asm"
 	include "Function_CursorAndJoystick.asm"
+        
+	include "Asset_ScreenBorder.asm"
+
+	include "Function_DrawBorder.asm"
+
         
 ;This include should be the last entry in the main file
         include "System_GameVariables.asm"

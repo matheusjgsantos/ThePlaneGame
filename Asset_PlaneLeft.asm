@@ -76,7 +76,7 @@ PLANE_LEFT_01A:
         DB $06,$18,$20,$20,$20,$40,$40,$80
 
 PLANE_LEFT_01A_ATTRIB:
-	DB 10,10,0,1
+	DB 160,220,0,1
             
 PLANE_LEFT_01B:
 ; 
@@ -88,7 +88,7 @@ PLANE_LEFT_01B:
         DB $00,$C0,$C0,$40,$00,$00,$00,$00
 
 PLANE_LEFT_01B_ATTRIB:
-	DB 10,10,4*1,3
+	DB 160,220,4*1,3
             
 PLANE_LEFT_01C:
 ; 
@@ -100,7 +100,7 @@ PLANE_LEFT_01C:
             DB $80,$00,$00,$00,$00,$00,$00,$00
 
 PLANE_LEFT_01C_ATTRIB:
-	DB 10,10,4*2,2
+	DB 160,220,4*2,2
             
 PLANE_LEFT_01D:
 ; 
@@ -112,7 +112,7 @@ PLANE_LEFT_01D:
             DB $48,$20,$00,$80,$40,$00,$80,$00
             
 PLANE_LEFT_01D_ATTRIB:
-	DB 10,10,4*3,15
+	DB 160,220,4*3,15
             
 PLANE_LEFT_01E:
 ; 
