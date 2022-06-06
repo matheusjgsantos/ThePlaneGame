@@ -65,12 +65,12 @@ mostra_nuvens:
 
         call LDIRVM
   
-        ld a,11
+        ld   a,11
         call CALPAT
         push hl
-        pop de  
-        ld hl,nuvem03_pattern
-        ld bc,32
+        pop  de  
+        ld   hl,nuvem03_pattern
+        ld   bc,32
 
         call LDIRVM
  
@@ -80,8 +80,8 @@ mostra_nuvens:
         push hl
         pop  de
         
-        ld hl,nuvem03_attrib
-        ld bc,4
+        ld   hl,nuvem03_attrib
+        ld   bc,4
 
 
         CALL LDIRVM
@@ -94,33 +94,37 @@ movimenta_nuvem:
         inc hl
         
 	ld a,(nuvem01H)		; carrega o valor definido em nuvem01H em A
-	call WRTVRM
+        call WRTVRM
+        
+        sub a,1
+        cp 8			; Compara A com 0 (inicio da tela)
+	
+        jp z,reset_nuvem01
+        ld (nuvem01H),a
         
         ld a,9
         call CALATR
+        inc hl
         
+        ld a,(nuvem01bH)
         push af
-        add 16
-        
+        add a,16
         call WRTVRM
-        
         pop af
-        DEC A			; Decrementa A
+        sub a,1			; Decrementa A
 	cp 8			; Compara A com 0 (inicio da tela)
 	
-        jp z,reset_nuvem01	; Se A = 0,chama rotina de reset do
+        jp z,reset_nuvem01b	; Se A = 0,chama rotina de reset do
             			; valor de nuvem_h para posicionar o sprite
                                 ; no lado direito da tela
-	ld (nuvem01H),a		; Coloca o valor de A em nuvem01H
-        
-	ld a,9
+        ld (nuvem01bH),a
+	
+	ld a,10
         call CALATR
         inc hl
-        ;ld hl,SPR_ATT+(4*4+1)	; Coloca em HL a posicao da tabela de 	
-          			; atributo de sprite + 9, que define a 
-                                ; movimentacao horizontal do sprite 2
-	ld a,(nuvem02H)		; carrega o valor definido em nuvem02H em A
-	sub 2			; Subtrai 2 de A para movimentar o sprite 2
+        
+        ld a,(nuvem02H)		; carrega o valor definido em nuvem02H em A
+	sub 1			; Subtrai 2 de A para movimentar o sprite 2
             			; mais rapido que os demais
 	call WRTVRM		; Coloca na posical HL da VRAM o valor de A
 	cp 8			; Compara A com 0 (inicio da tela)
@@ -129,12 +133,13 @@ movimenta_nuvem:
                                 ; no lado direito da tela
 	ld (nuvem02H),a		; Coloca o valor de A em nuvem02H
         
-        ld a,10
+        ld a,11
         call CALATR
         inc hl
         ld a,(nuvem03H)
-        ;ld hl,SPR_ATT+(4*5+1)
+
         call WRTVRM
+        
         sub 1
         cp 8
         jp z,reset_nuvem03
@@ -146,6 +151,14 @@ reset_nuvem01:
 	ld a,240-8		; Carrega 240 em A (fim da tela)
 	ld (nuvem01H),a		; Coloca A em nuvem01H, resetando a posição
 	ret			; Retorna pra origem da chamada
+
+reset_nuvem01b:			
+	;ld a,240-16		; Carrega 240 em A (fim da tela)
+	ld a,(nuvem01H)
+        cp 240-16
+        ret nz
+        ld (nuvem01bH),a	; Coloca A em nuvem01H, resetando a posição
+	ret	
 
 reset_nuvem02:
 	ld a,240-8		; Carrega 240 em A (fim da tela)
