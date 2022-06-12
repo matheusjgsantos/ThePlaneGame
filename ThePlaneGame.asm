@@ -29,13 +29,55 @@ Init:
         
         ;
         call desenha_borda
+        call InitSprites
         ; The first sprite we will load will be the LeftPlane, so we will set
         ; 0 to A and call the sprite function
         
 	; Load the plane sprites
-        call LoadPlaneLeftSprite
-        call LoadPlaneRightSprite
-        call mostra_nuvens
+        
+        ld hl,PLANE_LEFT_01A
+        ld (LoadSpritePattern),hl
+        
+        ld a,$01
+        ld (LoadSpriteColor),a
+
+	;ld hl,PLANE_LEFT_01A_ATTRIB
+        ;ld (LoadSpriteAttrib),hl
+
+	call LoadSprite
+        
+        ld hl,PLANE_LEFT_01B
+        ld (LoadSpritePattern),hl
+        
+        ld a,$03
+        ld (LoadSpriteColor),a
+        
+        ;ld hl,PLANE_LEFT_01B_ATTRIB
+        ;ld (LoadSpriteAttrib),hl
+        
+        call LoadSprite
+        
+        ld hl,PLANE_LEFT_01C
+        ld (LoadSpritePattern),hl
+        
+        ld bc,2
+        ld (LoadSpriteColor),bc
+        
+        ;ld hl,PLANE_LEFT_01C_ATTRIB
+        ;ld (LoadSpriteAttrib),hl
+        
+        call LoadSprite
+        
+        ld hl,PLANE_LEFT_01D
+        ld (LoadSpritePattern),hl
+        
+        ld bc,15
+        ld (LoadSpriteColor),bc
+        
+        ;ld hl,PLANE_LEFT_01D_ATTRIB
+        ;ld (LoadSpriteAttrib),hl
+        
+        call LoadSprite
         
         ; Zeroes the JIFFY value
         ld a,0
@@ -52,7 +94,7 @@ MainLoop:
         
 ExecWithinJiffy:
 	call CheckStick
-        call movimenta_nuvem
+        ;call movimenta_nuvem
         
 NewJiffy:
 	ld a,(JIFFY)
@@ -61,8 +103,9 @@ NewJiffy:
         
 ; Includes for functions and assets
 	include "Function_SetScreen.asm"
-	include "Asset_PlaneLeft.asm"
         include "Function_SetSound.asm"
+	include "Function_LoadSprite.asm"
+	include "Asset_PlaneLeft.asm"
 	include "Asset_PlaneRight.asm"
 	include "Function_CursorAndJoystick.asm"
 	include "Asset_ScreenBorder.asm"

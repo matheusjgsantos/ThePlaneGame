@@ -10,12 +10,12 @@ UpStick:
 	cp 1
         jr nz,UpRightStick
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         cp 10
         jp z,ExitLoop
         
         sub a,1
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
         
         jp ExitLoop
         
@@ -23,20 +23,20 @@ UpRightStick:
 	cp 2
         jr nz,RightStick
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         cp 10
         jp z,CheckUpRightLimit
         
         sub a,1
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
 
 CheckUpRightLimit:        
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         cp 230
         jp z,ExitLoop
         
         add a,1
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         jp ExitLoop
         
@@ -44,12 +44,12 @@ RightStick:
         cp 3
         jr nz,DownRightStick
 
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         cp 230
         jp z,ExitLoop
         
         add a,1
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         jp ExitLoop
         
@@ -57,20 +57,20 @@ DownRightStick:
 	cp 4
         jr nz,DownStick
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         cp 115
         jp z,CheckDownRightLimit
         
         add a,1
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
         
 CheckDownRightLimit:       
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         cp 230
         jp z,ExitLoop
         
         add a,1
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         jp ExitLoop
         
@@ -78,12 +78,12 @@ DownStick:
 	cp 5
         jp nz,DownLeftStick
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         cp 115
         jp z,ExitLoop
         
         add a,1
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
         
         jp ExitLoop      
 
@@ -91,20 +91,20 @@ DownLeftStick:
 	cp 6
         jr nz,LeftStick
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         cp 115
         jp z,CheckDownLeftLimit
         
         add a,1
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
         
 CheckDownLeftLimit:       
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         cp 10
         jp z,ExitLoop
         
         sub a,1
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         jp ExitLoop
 
@@ -112,12 +112,12 @@ LeftStick:
         cp 7	
         jr nz,UpLeftStick
         
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         cp 10
         jr z,ExitLoop
         
         sub a,1
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         jp ExitLoop
 
@@ -125,20 +125,20 @@ UpLeftStick:
 	cp 8
         jr nz,ExitLoop
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         cp 10
         jp z,CheckUpLeftLimit
         
         sub a,1
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
         
 CheckUpLeftLimit:       
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         cp 10
         jp z,ExitLoop
         
         sub a,1
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         jp ExitLoop
               

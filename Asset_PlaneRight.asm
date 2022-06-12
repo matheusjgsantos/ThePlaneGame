@@ -75,13 +75,13 @@ LoadPlaneRightSprite:
         ld   hl,PLANE_RIGHT_01D_ATTRIB
         call LDIRVM
         
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         ld a,20
-        ld (PlaneRightVertical),a
+        ld (PlaneRightVerPosition),a
         
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         ld a,10
-        ld (PlaneRightHorizontal),a
+        ld (PlaneRightHorPosition),a
         
         call MovePLaneRight
         
@@ -97,16 +97,16 @@ MovePlaneRight:
 MovePLaneRightLoop:
         ld a,c
         call CALATR
-        ld a,(PlaneRightVertical)
+        ld a,(PlaneRightVerPosition)
         call WRTVRM
         
         inc hl
         
-        ld a,(PlaneRightHorizontal)
+        ld a,(PlaneRightHorPosition)
         call WRTVRM
         
         inc c
-	djnz MovePLaneRightLoop
+	djnz MovePlaneRightLoop
         
         pop af
         pop hl
