@@ -38,46 +38,34 @@ Init:
         ld hl,PLANE_LEFT_01A
         ld (LoadSpritePattern),hl
         
-        ld a,$01
-        ld (LoadSpriteColor),a
-
-	;ld hl,PLANE_LEFT_01A_ATTRIB
-        ;ld (LoadSpriteAttrib),hl
+        ld hl,LoadSpriteColor
+        ld (hl),$01
 
 	call LoadSprite
-        
+
         ld hl,PLANE_LEFT_01B
         ld (LoadSpritePattern),hl
         
-        ld a,$03
-        ld (LoadSpriteColor),a
-        
-        ;ld hl,PLANE_LEFT_01B_ATTRIB
-        ;ld (LoadSpriteAttrib),hl
+        ld hl,LoadSpriteColor
+        ld (hl),$03
         
         call LoadSprite
         
         ld hl,PLANE_LEFT_01C
         ld (LoadSpritePattern),hl
         
-        ld bc,2
-        ld (LoadSpriteColor),bc
-        
-        ;ld hl,PLANE_LEFT_01C_ATTRIB
-        ;ld (LoadSpriteAttrib),hl
+        ld hl,LoadSpriteColor
+        ld (hl),$02
         
         call LoadSprite
-        
+
         ld hl,PLANE_LEFT_01D
         ld (LoadSpritePattern),hl
         
-        ld bc,15
-        ld (LoadSpriteColor),bc
+        ld hl,LoadSpriteColor
+        ld (hl),$0F
         
-        ;ld hl,PLANE_LEFT_01D_ATTRIB
-        ;ld (LoadSpriteAttrib),hl
-        
-        call LoadSprite
+	call LoadSprite
         
         ; Zeroes the JIFFY value
         ld a,0

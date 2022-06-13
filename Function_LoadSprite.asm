@@ -39,22 +39,24 @@ LoadSprite:
         
         ld   hl,LoadSpriteAttrib	; Load the memory position of the attribute
         				; into HL
-	;ld   (hl),160
+	ld   (hl),160
 	inc  hl
-        ;ld   (hl),220
+        ld   (hl),220
         inc  hl
         ld   a,(NextSpriteId)
+        sla  a				; Multiplies by 4
+        sla  a
+        ;ld   a,4
         ld   (hl),a
 	inc  hl
-        ;ld   a,(LoadSpriteColor)
-        ld   a,1
+        ld   a,(LoadSpriteColor)
         ld   (hl),a
         
-        ;ld   hl,LoadSpriteAttrib
+        ld   hl,LoadSpriteAttrib
      	
-        dec hl
-        dec hl
-        dec hl
+        ;dec hl
+        ;dec hl
+        ;dec hl
 	ld   bc,4			; Attribute has 4 bytes:
         				; Vertical Position
                                         ; Horizontal Position
