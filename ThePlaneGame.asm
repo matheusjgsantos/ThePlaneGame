@@ -22,7 +22,6 @@ Init:
         ld d,5		; Border color
         call InitGraphicMode;	Initializes graphic mode with the color at BCD 
         call SetSpriteSize16x16
-
         
         ; We need to set all screen tiles to tile 0 before loading any graphic
         call ResetNameTable
@@ -67,6 +66,38 @@ Init:
         
 	call LoadSprite
         
+        ld hl,PLANE_RIGHT_01A
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$01
+        
+        call LoadSprite
+        
+        ld hl,PLANE_RIGHT_01B
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$0C
+        
+        call LoadSprite
+        
+        ld hl,PLANE_RIGHT_01C
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$0D
+        
+        call LoadSprite
+        
+        ld hl,PLANE_RIGHT_01D
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$0F
+        
+        call LoadSprite
+        
         ; Zeroes the JIFFY value
         ld a,0
         ld (JIFFY),a
@@ -93,11 +124,11 @@ NewJiffy:
 	include "Function_SetScreen.asm"
         include "Function_SetSound.asm"
 	include "Function_LoadSprite.asm"
+	include "Function_CursorAndJoystick.asm"
+	include "Function_DrawBorder.asm"
 	include "Asset_PlaneLeft.asm"
 	include "Asset_PlaneRight.asm"
-	include "Function_CursorAndJoystick.asm"
 	include "Asset_ScreenBorder.asm"
-	include "Function_DrawBorder.asm"
 	include "Asset_Clouds.asm"
 
 

@@ -9,18 +9,25 @@ InitGraphicMode:
         call INIGRP
         
         ret
-        
+
+SetSpriteSize8x8:
+	ld   a,(RG1SAV)
+        and  $FC
+        ;or   $00
+        jp   UpdateSpriteSize
+
+
 SetSpriteSize16x16:
-        ld a,(RG1SAV)	; Carrega em A o valor atual do registrador 1 
-            		; do VDP
-        and $FC		; Altera valor de A para xxxxxx00 
-            		; (x=sem mudança)
-        or $02
-		; Altera valor de A para xxxxxx10
-        di		; Desabilita as interrupçoes 
-        ld b, a		; Coloca em B o valor a ser escrito no 
+        ld   a,(RG1SAV)	
+        and  $FC	; A = xxxxxx00
+        or   $02	; A = xxxxxx10
+        jp UpdateSpriteSize
+
+UpdateSpriteSize:
+	di		; Desabilita as interrupçoes 
+        ld   b, a	; Coloca em B o valor a ser escrito no 
         		; registrador do VDP
-        ld c, $01	; Coloca em C o valor do registrador alvo
+        ld   c, $01	; Coloca em C o valor do registrador alvo
         call WRTVDP	; Envia para o registrador C os dados em B
         ei		; Habilita novamente as interrupções
         

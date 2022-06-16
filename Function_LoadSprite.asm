@@ -5,12 +5,13 @@ InitSprites:
 
 LoadSprite:
 	; Routine to load the sprites based in the pattern and attribute
-        ; stored at the LoadSpritePattern and LoadSpriteAttribute "variables"
+        ; stored at the LoadSpritePattern and LoadSpriteColor "variables"
         ; First, load the values as below:
         ; 	ld hl,POINTER_TO_THE_PATTERN
         ; 	ld (LoadSpritePattern),hl
-        ; 	ld hl,POINTER_TO_THE_ATTRIBUTE
-        ; 	ld (LoadSpritePattern),hl
+        ; Next, load the sprite colors in the 
+        ; 	ld hl,LoadSpriteColor
+        ;	ld (hl),$01
         ; Then call the LoadSprite routine
         
 	
@@ -38,15 +39,15 @@ LoadSprite:
         pop  de				; Then POP back the value into DE
         
         ld   hl,LoadSpriteAttrib	; Load the memory position of the attribute
-        				; into HL
-	ld   (hl),160
+        				; "variable" into HL
+	ld   (hl),100
 	inc  hl
         ld   (hl),220
         inc  hl
         ld   a,(NextSpriteId)
         sla  a				; Multiplies by 4
         sla  a
-        ;ld   a,4
+
         ld   (hl),a
 	inc  hl
         ld   a,(LoadSpriteColor)
