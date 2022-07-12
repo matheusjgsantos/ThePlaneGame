@@ -29,43 +29,11 @@ Init:
         ;
         call desenha_borda
         call InitSprites
+        call Mostra_Nuvens
         ; The first sprite we will load will be the LeftPlane, so we will set
         ; 0 to A and call the sprite function
         
 	; Load the plane sprites
-        
-        ld hl,PLANE_LEFT_01A
-        ld (LoadSpritePattern),hl
-        
-        ld hl,LoadSpriteColor
-        ld (hl),$01
-
-	call LoadSprite
-
-        ld hl,PLANE_LEFT_01B
-        ld (LoadSpritePattern),hl
-        
-        ld hl,LoadSpriteColor
-        ld (hl),$03
-        
-        call LoadSprite
-        
-        ld hl,PLANE_LEFT_01C
-        ld (LoadSpritePattern),hl
-        
-        ld hl,LoadSpriteColor
-        ld (hl),$02
-        
-        call LoadSprite
-
-        ld hl,PLANE_LEFT_01D
-        ld (LoadSpritePattern),hl
-        
-        ld hl,LoadSpriteColor
-        ld (hl),$0F
-        
-	call LoadSprite
-        
         ld hl,PLANE_RIGHT_01A
         ld (LoadSpritePattern),hl
         
@@ -98,6 +66,38 @@ Init:
         
         call LoadSprite
         
+        ld hl,PLANE_LEFT_01A
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$01
+
+	call LoadSprite
+
+        ld hl,PLANE_LEFT_01B
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$03
+        
+        call LoadSprite
+        
+        ld hl,PLANE_LEFT_01C
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$02
+        
+        call LoadSprite
+
+        ld hl,PLANE_LEFT_01D
+        ld (LoadSpritePattern),hl
+        
+        ld hl,LoadSpriteColor
+        ld (hl),$0F
+        
+	call LoadSprite
+                
         ; Zeroes the JIFFY value
         ld a,0
         ld (JIFFY),a
@@ -113,7 +113,7 @@ MainLoop:
         
 ExecWithinJiffy:
 	call CheckStick
-        ;call movimenta_nuvem
+        call movimenta_nuvem
         
 NewJiffy:
 	ld a,(JIFFY)

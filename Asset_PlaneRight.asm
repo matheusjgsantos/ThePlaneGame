@@ -91,8 +91,8 @@ MovePlaneRight:
 	push hl
         push af
         
-        ld b,4
-        ld c,4
+        ld b,4	; Number of sprites
+        ld c,0	; Initial Sprite ID
         
 MovePLaneRightLoop:
         ld a,c

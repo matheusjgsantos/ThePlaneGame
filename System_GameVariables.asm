@@ -1,8 +1,8 @@
 ;Game Variables need to be stored at the RAM
 	org 0B000h
         
-Stage01_Sprites:
-	dw PLANE_LEFT_01A,PLANE_LEFT_01B,PLANE_LEFT_01C,PLANE_LEFT_01D
+;Stage01_Sprites:
+;	dw PLANE_LEFT_01A,PLANE_LEFT_01B,PLANE_LEFT_01C,PLANE_LEFT_01D
         
 NextSpriteId:
 	db 0

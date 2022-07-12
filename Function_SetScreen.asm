@@ -1,14 +1,14 @@
-; Fill the name table with zeros, setting the whole screen to tile 0 (empty)
+; Sets the foreground, background and border colors, calling INITGRP after
 InitGraphicMode:
-	ld hl,FORCLR
-        ld (hl),b
-        ld hl,BAKCLR
-        ld (hl),c
-        ld hl,BDRCLR
-        ld (hl),d
-        call INIGRP
+	ld hl,FORCLR		; Loads FORCLR sys variable in HL
+        ld (hl),b		; Loads the value from B into the position pointed by HL
+        ld hl,BAKCLR		; Loads BAKCLR sys variable in HL
+        ld (hl),c		; Loads the value from B into the position pointed by HL
+        ld hl,BDRCLR		; Loads BDCLR sys variable in HL
+        ld (hl),d		; Loads the value from B into the position pointed by HL
+        call INIGRP		; Initializes the VDP graphic mode
         
-        ret
+        ret			; Return to the caller routine
 
 SetSpriteSize8x8:
 	ld   a,(RG1SAV)
@@ -32,7 +32,7 @@ UpdateSpriteSize:
         ei		; Habilita novamente as interrupções
         
         ret
-
+; Fill the name table with zeros, setting the whole screen to tile 0 (empty)
 ResetNameTable:
 	ld hl,1800H
         ld a,$0
