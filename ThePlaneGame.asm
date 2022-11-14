@@ -103,6 +103,8 @@ Init:
         ld (JIFFY),a
         ld (PreviousJiffy),a
         
+        call MovePlaneLeft
+        
 MainLoop:
 	ld a,(JIFFY)
         ld hl,PreviousJiffy
@@ -130,6 +132,7 @@ NewJiffy:
 	include "Asset_PlaneRight.asm"
 	include "Asset_ScreenBorder.asm"
 	include "Asset_Clouds.asm"
+        include "plane_test.asm"
 
 
 ;This include should be the last entry in the main file

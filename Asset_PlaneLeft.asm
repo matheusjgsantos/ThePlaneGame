@@ -1,5 +1,36 @@
-;Plane going to left sprite
+MovePlaneLeft:
+	push hl
+        push af
         
+        ld b,4	; Number of sprites
+        ld c,4	; Initial Sprite ID
+        
+        ld hl,PlaneLeftVerPosition
+        ld (hl),160
+        ld hl,PlaneLeftHorPosition
+        ld (hl),220
+        
+MovePlaneLeftLoop:
+        ld a,c
+        call CALATR
+        ld a,(PlaneLeftVerPosition)
+        call WRTVRM
+        
+        inc hl
+        
+        ld a,(PlaneLeftHorPosition)
+        call WRTVRM
+        
+        inc c
+	djnz MovePlaneLeftLoop
+        
+        pop af
+        pop hl
+        
+        ret
+
+;Plane going to left sprite
+
 PLANE_LEFT_01A:
 ; 
 ; --- Slot 1

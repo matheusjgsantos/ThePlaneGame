@@ -40,9 +40,9 @@ LoadSprite:
         
         ld   hl,LoadSpriteAttrib	; Load the memory position of the attribute
         				; "variable" into HL
-	ld   (hl),100
+	ld   (hl),0
 	inc  hl
-        ld   (hl),220
+        ld   (hl),-1
         inc  hl
         ld   a,(NextSpriteId)
         sla  a				; Multiplies by 4

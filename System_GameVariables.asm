@@ -32,6 +32,11 @@ PlaneRightVerPosition:
 	DB $0
 PlaneRightHorPosition:
 	DB $0
+        
+PlaneLeftVerPosition:
+	DB $0
+PlaneLeftHorPosition:
+	DB $0
 
 Posicao:
 	DW $0

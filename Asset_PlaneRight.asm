@@ -1,92 +1,3 @@
-LoadPlaneRightSprite:
-	ld   a,4
-	call CALPAT
-        push hl
-        pop  de
-        
-        ld   hl,PLANE_RIGHT_01A
-        ld   bc,32
-        call LDIRVM
-	
-        ld   a,4
-        call CALATR
-        
-        push hl
-        pop  de
-        ld   bc,4		; Os atributos de sprite sao sempre 4 bytes:
-            			; Byte 0: Coordenada X
-                                ; Byte 1: Coordenada Y
-                                ; Byte 3: Numero do sprite
-                                ; Byte 4: Cor do Sprite (MSX1)
-        ld   hl,PLANE_RIGHT_01A_ATTRIB
-        call LDIRVM
-        
-        ld   a,5
-        call CALPAT
-        
-        push hl
-        pop  de
-        ld   hl,PLANE_RIGHT_01B
-	ld   bc,32
-        call LDIRVM
-	
-        ld   a,5
-        call CALATR
-        
-        push hl
-        pop  de
-        ld   bc,4
-        ld   hl,PLANE_RIGHT_01B_ATTRIB
-        call LDIRVM
-        
-        ld   a,6
-        call CALPAT
-        
-        push hl
-        pop  de
-        ld   hl,PLANE_RIGHT_01C
-	ld   bc,32
-        call LDIRVM
-	
-        ld   a,6
-        call CALATR
-        
-        push hl
-        pop  de
-        ld   bc,4
-        ld   hl,PLANE_RIGHT_01C_ATTRIB
-        call LDIRVM
-                
-        ld   a,7
-        call CALPAT
-        
-        push hl
-        pop  de
-        ld   hl,PLANE_RIGHT_01D
-	ld   bc,32
-        call LDIRVM
-	
-        ld   a,7
-        call CALATR
-        
-        push hl
-        pop  de
-        ld   bc,4
-        ld   hl,PLANE_RIGHT_01D_ATTRIB
-        call LDIRVM
-        
-        ld a,(PlaneRightVerPosition)
-        ld a,20
-        ld (PlaneRightVerPosition),a
-        
-        ld a,(PlaneRightHorPosition)
-        ld a,10
-        ld (PlaneRightHorPosition),a
-        
-        call MovePLaneRight
-        
-        ret
-
 MovePlaneRight:
 	push hl
         push af
@@ -121,8 +32,8 @@ PLANE_RIGHT_01A;
         DB $00,$00,$38,$44,$84,$E8,$18,$14
         DB $E2,$04,$38,$40,$80,$00,$00,$00
       
-PLANE_RIGHT_01A_ATTRIB:
-	DB 0,0,4*4,1
+;PLANE_RIGHT_01A_ATTRIB:
+;	DB 0,0,4*4,1
 
 PLANE_RIGHT_01B:
 ; color 12
@@ -131,8 +42,8 @@ PLANE_RIGHT_01B:
         DB $00,$00,$00,$00,$70,$10,$00,$08
         DB $1C,$F8,$C0,$80,$00,$00,$00,$00
 
-PLANE_RIGHT_01B_ATTRIB:
-	DB 0,0,4*5,12
+;PLANE_RIGHT_01B_ATTRIB:
+;	DB 0,0,4*5,12
 
 PLANE_RIGHT_01C
 ; color 13
@@ -141,8 +52,8 @@ PLANE_RIGHT_01C
         DB $00,$00,$00,$38,$08,$00,$00,$00
         DB $00,$00,$00,$00,$00,$00,$00,$00
         
-PLANE_RIGHT_01C_ATTRIB:
-	DB 0,0,4*6,13
+;PLANE_RIGHT_01C_ATTRIB:
+;	DB 0,0,4*6,13
 
 PLANE_RIGHT_01D
 ; color 14
@@ -151,8 +62,8 @@ PLANE_RIGHT_01D
         DB $00,$00,$00,$00,$00,$00,$C0,$E0
         DB $00,$00,$00,$00,$00,$00,$00,$00
         
-PLANE_RIGHT_01D_ATTRIB:
-	DB 0,0,4*7,14
+;PLANE_RIGHT_01D_ATTRIB:
+;	DB 0,0,4*7,14
 
 PLANE_RIGHT_01E
 ; color 15
